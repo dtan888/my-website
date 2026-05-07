@@ -34,12 +34,19 @@
       letter-spacing: 1px;
     }
 
-    nav a {
-      margin-left: 20px;
-      text-decoration: none;
-      color: #cbd5f5;
-      transition: 0.3s;
-    }
+    nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: nowrap;
+}
+
+nav a {
+  text-decoration: none;
+  color: #cbd5f5;
+  transition: 0.3s;
+  white-space: nowrap;
+}
 
     nav a:hover {
       color: white;
@@ -224,7 +231,7 @@
 
       <div class="card">
         <h3>Define</h3>
-        <p>Prioritize and plan solutions.</p>
+        <p>Prioritise and plan solutions.</p>
       </div>
 
       <div class="card">
