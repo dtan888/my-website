@@ -210,6 +210,57 @@
     document.getElementById("about").scrollIntoView({ behavior: "smooth" });
   }
 </script>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Database App</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+</head>
+<body>
 
+<h1>Add User</h1>
+
+<input id="name" placeholder="Enter name">
+<button onclick="addUser()">Save</button>
+
+<h2>Users:</h2>
+<ul id="userList"></ul>
+
+<script>
+  const supabaseClient = supabase.createClient(
+    "https://wgkynarihwgntbazzzda.supabase.co",
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indna3luYXJpaHdnbnRiYXp6emRhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgwOTM0NzQsImV4cCI6MjA5MzY2OTQ3NH0.Hwu98IrRMvE_qAXysCYF4X2qWdE91WqKVOwsxpdmOc8"
+  );
+
+  async function addUser() {
+    const name = document.getElementById("name").value;
+
+    await supabaseClient
+      .from("users")
+      .insert([{ name: name }]);
+
+    loadUsers();
+  }
+
+  async function loadUsers() {
+    const { data } = await supabaseClient
+      .from("users")
+      .select("*");
+
+    const list = document.getElementById("userList");
+    list.innerHTML = "";
+
+    data.forEach(user => {
+      const li = document.createElement("li");
+      li.textContent = user.name;
+      list.appendChild(li);
+    });
+  }
+
+  loadUsers();
+</script>
+
+</body>
+</html>
 </body>
 </html>
