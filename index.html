@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Product Management</title>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
@@ -56,14 +57,12 @@
     .hero h1 {
       font-size: 3rem;
       margin-bottom: 15px;
-      animation: fadeIn 1.5s ease;
     }
 
     .hero p {
       max-width: 600px;
       margin: auto;
       opacity: 0.8;
-      animation: fadeIn 2s ease;
     }
 
     .btn {
@@ -102,16 +101,6 @@
       padding: 20px;
       border-radius: 20px;
       backdrop-filter: blur(10px);
-      transition: 0.3s;
-    }
-
-    .card:hover {
-      transform: translateY(-8px);
-      background: rgba(255,255,255,0.1);
-    }
-
-    .card h3 {
-      margin-bottom: 10px;
     }
 
     footer {
@@ -130,7 +119,7 @@
       border-radius: 10px;
       border: none;
       width: 250px;
-      margin-right: 10px;
+      margin: 10px;
     }
 
     .database-section ul {
@@ -142,162 +131,298 @@
       margin-top: 10px;
       font-size: 18px;
     }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
   </style>
 </head>
 
 <body>
 
-<header>
-  <h2>PM Guide</h2>
-  <nav>
-    <a href="#about">About</a>
-    <a href="#skills">Skills</a>
-    <a href="#process">Process</a>
-  </nav>
-</header>
+  <header>
+    <h2>PM Guide</h2>
 
-<div class="hero">
-  <div>
-    <h1>What is Product Management?</h1>
-    <p>
-      Product Management is the art of building the right product for the right people.
-      It combines business, technology, and user experience to deliver real value.
-    </p>
-    <button class="btn" onclick="scrollToSection()">Explore</button>
-  </div>
-</div>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#process">Process</a>
+    </nav>
+  </header>
 
-<section id="about">
-  <h2>💡 What does a Product Manager do?</h2>
-  <div class="cards">
-    <div class="card">
-      <h3>Vision</h3>
-      <p>Defines what the product should become and why it matters.</p>
-    </div>
-    <div class="card">
-      <h3>Strategy</h3>
-      <p>Decides what to build, when, and how it creates value.</p>
-    </div>
-    <div class="card">
-      <h3>Execution</h3>
-      <p>Works with engineers and designers to ship features.</p>
+  <div class="hero">
+    <div>
+      <h1>What is Product Management?</h1>
+
+      <p>
+        Product Management is the art of building the right product for the right people.
+        It combines business, technology, and user experience to deliver real value.
+      </p>
+
+      <button class="btn" onclick="scrollToSection()">
+        Explore
+      </button>
     </div>
   </div>
-</section>
 
-<section id="skills">
-  <h2>🚀 Key Skills</h2>
-  <div class="cards">
-    <div class="card">
-      <h3>Communication</h3>
-      <p>Aligns teams and stakeholders effectively.</p>
+  <section id="about">
+
+    <h2>💡 What does a Product Manager do?</h2>
+
+    <div class="cards">
+
+      <div class="card">
+        <h3>Vision</h3>
+        <p>Defines what the product should become and why it matters.</p>
+      </div>
+
+      <div class="card">
+        <h3>Strategy</h3>
+        <p>Decides what to build, when, and how it creates value.</p>
+      </div>
+
+      <div class="card">
+        <h3>Execution</h3>
+        <p>Works with engineers and designers to ship features.</p>
+      </div>
+
     </div>
-    <div class="card">
-      <h3>Problem Solving</h3>
-      <p>Understands user pain points deeply.</p>
+
+  </section>
+
+  <section id="skills">
+
+    <h2>🚀 Key Skills</h2>
+
+    <div class="cards">
+
+      <div class="card">
+        <h3>Communication</h3>
+        <p>Aligns teams and stakeholders effectively.</p>
+      </div>
+
+      <div class="card">
+        <h3>Problem Solving</h3>
+        <p>Understands user pain points deeply.</p>
+      </div>
+
+      <div class="card">
+        <h3>Data Thinking</h3>
+        <p>Uses metrics to guide decisions.</p>
+      </div>
+
     </div>
-    <div class="card">
-      <h3>Data Thinking</h3>
-      <p>Uses metrics to guide decisions.</p>
+
+  </section>
+
+  <section id="process">
+
+    <h2>⚙️ Product Process</h2>
+
+    <div class="cards">
+
+      <div class="card">
+        <h3>Discover</h3>
+        <p>Research users and identify problems.</p>
+      </div>
+
+      <div class="card">
+        <h3>Define</h3>
+        <p>Prioritize and plan solutions.</p>
+      </div>
+
+      <div class="card">
+        <h3>Deliver</h3>
+        <p>Build, launch, and iterate quickly.</p>
+      </div>
+
     </div>
-  </div>
-</section>
 
-<section id="process">
-  <h2>⚙️ Product Process</h2>
-  <div class="cards">
-    <div class="card">
-      <h3>Discover</h3>
-      <p>Research users and identify problems.</p>
+  </section>
+
+  <section class="database-section">
+
+    <h1>Login / Sign Up</h1>
+
+    <input id="email" type="email" placeholder="Email">
+    <input id="password" type="password" placeholder="Password">
+
+    <br>
+
+    <button class="btn" onclick="signUp()">Sign Up</button>
+    <button class="btn" onclick="login()">Login</button>
+    <button class="btn" onclick="logout()">Logout</button>
+
+    <p id="authStatus" style="margin-top:20px;"></p>
+
+    <div id="userArea" style="display:none; margin-top:40px;">
+
+      <h1>Add User</h1>
+
+      <input id="name" placeholder="Enter name">
+
+      <button class="btn" onclick="addUser()">
+        Save
+      </button>
+
+      <h2 style="margin-top:30px;">
+        Users:
+      </h2>
+
+      <ul id="userList"></ul>
+
     </div>
-    <div class="card">
-      <h3>Define</h3>
-      <p>Prioritize and plan solutions.</p>
-    </div>
-    <div class="card">
-      <h3>Deliver</h3>
-      <p>Build, launch, and iterate quickly.</p>
-    </div>
-  </div>
-</section>
 
-<section class="database-section">
-  <h1>Add User</h1>
+  </section>
 
-  <input id="name" placeholder="Enter name">
-  <button class="btn" onclick="addUser()">Save</button>
+  <footer>
+    Built with 💻 + curiosity
+  </footer>
 
-  <h2 style="margin-top: 30px;">Users:</h2>
-  <ul id="userList"></ul>
-</section>
+  <script>
 
-<footer>
-  Built with 💻 + curiosity
-</footer>
+    const supabaseClient = supabase.createClient(
+      "https://wgkynarihwgntbazzzda.supabase.co",
+      "PASTE_YOUR_ANON_KEY_HERE"
+    );
 
-<script>
-  const supabaseClient = supabase.createClient(
-    "https://wgkynarihwgntbazzzda.supabase.co",
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indna3luYXJpaHdnbnRiYXp6emRhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgwOTM0NzQsImV4cCI6MjA5MzY2OTQ3NH0.Hwu98IrRMvE_qAXysCYF4X2qWdE91WqKVOwsxpdmOc8"
-  );
+    function scrollToSection() {
 
-  function scrollToSection() {
-    document.getElementById("about").scrollIntoView({
-      behavior: "smooth"
-    });
-  }
+      document.getElementById("about").scrollIntoView({
+        behavior: "smooth"
+      });
 
-  async function addUser() {
-    const name = document.getElementById("name").value;
-
-    const { error } = await supabaseClient
-      .from("users")
-      .insert([{ name: name }]);
-
-    if (error) {
-      console.log(error);
-      alert("Error saving user");
-    } else {
-      alert("User saved!");
-      document.getElementById("name").value = "";
-      loadUsers();
     }
-  }
 
-  async function loadUsers() {
-    const { data, error } = await supabaseClient
-      .from("users")
-      .select("*");
+    async function signUp() {
 
-    if (error) {
-      console.log(error);
-      return;
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      const { error } = await supabaseClient.auth.signUp({
+        email: email,
+        password: password
+      });
+
+      if (error) {
+
+        alert(error.message);
+
+      } else {
+
+        alert("Signup successful");
+
+      }
     }
 
-    const list = document.getElementById("userList");
-    list.innerHTML = "";
+    async function login() {
 
-    data.forEach(user => {
-      const li = document.createElement("li");
-      li.textContent = user.name;
-      list.appendChild(li);
-    });
-  }
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
 
-  loadUsers();
-</script>
+      const { error } = await supabaseClient.auth.signInWithPassword({
+        email: email,
+        password: password
+      });
+
+      if (error) {
+
+        alert(error.message);
+
+      } else {
+
+        checkUser();
+
+      }
+    }
+
+    async function logout() {
+
+      await supabaseClient.auth.signOut();
+
+      checkUser();
+
+    }
+
+    async function checkUser() {
+
+      const { data } = await supabaseClient.auth.getSession();
+
+      const userArea = document.getElementById("userArea");
+      const authStatus = document.getElementById("authStatus");
+
+      if (data.session) {
+
+        authStatus.textContent = "Logged in";
+
+        userArea.style.display = "block";
+
+        loadUsers();
+
+      } else {
+
+        authStatus.textContent = "Not logged in";
+
+        userArea.style.display = "none";
+
+      }
+    }
+
+    async function addUser() {
+
+      const name = document.getElementById("name").value;
+
+      const { error } = await supabaseClient
+        .from("users")
+        .insert([{ name: name }]);
+
+      if (error) {
+
+        console.log(error);
+
+        alert("Error saving user");
+
+      } else {
+
+        alert("User saved!");
+
+        document.getElementById("name").value = "";
+
+        loadUsers();
+
+      }
+    }
+
+    async function loadUsers() {
+
+      const { data, error } = await supabaseClient
+        .from("users")
+        .select("*");
+
+      if (error) {
+
+        console.log(error);
+
+        return;
+
+      }
+
+      const list = document.getElementById("userList");
+
+      list.innerHTML = "";
+
+      data.forEach(user => {
+
+        const li = document.createElement("li");
+
+        li.textContent = user.name;
+
+        list.appendChild(li);
+
+      });
+
+    }
+
+    checkUser();
+
+  </script>
 
 </body>
+
 </html>
