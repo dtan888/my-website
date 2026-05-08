@@ -4,7 +4,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Product Management</title>
+
+  <title>Product Feature Board</title>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
 
@@ -27,38 +28,40 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 20px;
     }
 
     header h2 {
       font-weight: 600;
       letter-spacing: 1px;
+      white-space: nowrap;
     }
 
     nav {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  flex-wrap: nowrap;
-}
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: nowrap;
+    }
 
-nav a {
-  text-decoration: none;
-  color: #cbd5f5;
-  transition: 0.3s;
-  white-space: nowrap;
-}
+    nav a {
+      text-decoration: none;
+      color: #cbd5f5;
+      transition: 0.3s;
+      white-space: nowrap;
+    }
 
     nav a:hover {
       color: white;
     }
 
     .hero {
-      height: 90vh;
+      min-height: 80vh;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 20px;
+      padding: 40px 20px;
     }
 
     .hero h1 {
@@ -67,13 +70,14 @@ nav a {
     }
 
     .hero p {
-      max-width: 600px;
+      max-width: 650px;
       margin: auto;
-      opacity: 0.8;
+      opacity: 0.85;
+      line-height: 1.6;
     }
 
     .btn {
-      margin-top: 25px;
+      margin: 10px;
       padding: 12px 28px;
       border-radius: 30px;
       border: none;
@@ -90,24 +94,105 @@ nav a {
       color: white;
     }
 
+    .btn.secondary {
+      background: rgba(255,255,255,0.1);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+
     section {
       padding: 80px 40px;
       max-width: 1100px;
       margin: auto;
     }
 
-    .cards {
+    .cards,
+    .feature-list {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
       margin-top: 40px;
     }
 
-    .card {
-      background: rgba(255,255,255,0.05);
-      padding: 20px;
+    .card,
+    .feature-card,
+    .auth-box,
+    .form-box {
+      background: rgba(255,255,255,0.06);
+      padding: 24px;
       border-radius: 20px;
       backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .card h3,
+    .feature-card h3 {
+      margin-bottom: 10px;
+    }
+
+    .card p,
+    .feature-card p {
+      opacity: 0.85;
+      line-height: 1.5;
+    }
+
+    .feature-card {
+      text-align: left;
+    }
+
+    .feature-meta {
+      margin-top: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(56, 189, 248, 0.18);
+      color: #bae6fd;
+      font-size: 0.85rem;
+    }
+
+    .votes {
+      font-weight: bold;
+      color: #38bdf8;
+    }
+
+    .app-section {
+      text-align: center;
+    }
+
+    .auth-box,
+    .form-box {
+      max-width: 700px;
+      margin: 30px auto;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      padding: 14px;
+      margin: 10px 0;
+      border-radius: 12px;
+      border: none;
+      outline: none;
+      font-size: 1rem;
+    }
+
+    textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    #authStatus {
+      margin-top: 20px;
+      opacity: 0.85;
     }
 
     footer {
@@ -116,27 +201,19 @@ nav a {
       opacity: 0.6;
     }
 
-    .database-section {
-      text-align: center;
-      padding: 60px 20px;
-    }
+    @media (max-width: 700px) {
+      header {
+        padding: 20px;
+        flex-direction: column;
+      }
 
-    .database-section input {
-      padding: 12px;
-      border-radius: 10px;
-      border: none;
-      width: 250px;
-      margin: 10px;
-    }
+      .hero h1 {
+        font-size: 2.2rem;
+      }
 
-    .database-section ul {
-      list-style: none;
-      margin-top: 20px;
-    }
-
-    .database-section li {
-      margin-top: 10px;
-      font-size: 18px;
+      section {
+        padding: 60px 20px;
+      }
     }
   </style>
 </head>
@@ -144,49 +221,49 @@ nav a {
 <body>
 
   <header>
-    <h2>PM Guide</h2>
+    <h2>Feature Board</h2>
 
     <nav>
       <a href="#about">About</a>
       <a href="#skills">Skills</a>
-      <a href="#process">Process</a>
+      <a href="#board">Board</a>
     </nav>
   </header>
 
   <div class="hero">
     <div>
-      <h1>What is Product Management?</h1>
+      <h1>Product Feature Board</h1>
 
       <p>
-        Product Management is the art of building the right product for the right people.
-        It combines business, technology, and user experience to deliver real value.
+        Submit product ideas, collect feedback, and vote on what should be built next.
+        This turns your website into a real product management app.
       </p>
 
-      <button class="btn" onclick="scrollToSection()">
-        Explore
+      <button class="btn" onclick="scrollToSection('board')">
+        Open Board
       </button>
     </div>
   </div>
 
   <section id="about">
 
-    <h2>💡 What does a Product Manager do?</h2>
+    <h2>💡 What is this?</h2>
 
     <div class="cards">
 
       <div class="card">
-        <h3>Vision</h3>
-        <p>Defines what the product should become and why it matters.</p>
+        <h3>Collect Ideas</h3>
+        <p>Users can submit feature requests and explain what problem they solve.</p>
       </div>
 
       <div class="card">
-        <h3>Strategy</h3>
-        <p>Decides what to build, when, and how it creates value.</p>
+        <h3>Prioritise</h3>
+        <p>Votes help show which ideas people care about most.</p>
       </div>
 
       <div class="card">
-        <h3>Execution</h3>
-        <p>Works with engineers and designers to ship features.</p>
+        <h3>Build Better Products</h3>
+        <p>Use feedback to decide what to build next.</p>
       </div>
 
     </div>
@@ -195,91 +272,76 @@ nav a {
 
   <section id="skills">
 
-    <h2>🚀 Key Skills</h2>
+    <h2>🚀 What you are learning</h2>
 
     <div class="cards">
 
       <div class="card">
-        <h3>Communication</h3>
-        <p>Aligns teams and stakeholders effectively.</p>
+        <h3>Authentication</h3>
+        <p>Users can sign up, log in, and log out.</p>
       </div>
 
       <div class="card">
-        <h3>Problem Solving</h3>
-        <p>Understands user pain points deeply.</p>
+        <h3>Database</h3>
+        <p>Feature ideas are saved to Supabase.</p>
       </div>
 
       <div class="card">
-        <h3>Data Thinking</h3>
-        <p>Uses metrics to guide decisions.</p>
+        <h3>CRUD Basics</h3>
+        <p>You can create, read, vote, and delete your own ideas.</p>
       </div>
 
     </div>
 
   </section>
 
-  <section id="process">
+  <section id="board" class="app-section">
 
-    <h2>⚙️ Product Process</h2>
+    <h2>🧠 Feature Request Board</h2>
 
-    <div class="cards">
+    <div class="auth-box">
 
-      <div class="card">
-        <h3>Discover</h3>
-        <p>Research users and identify problems.</p>
-      </div>
+      <h3>Login / Sign Up</h3>
 
-      <div class="card">
-        <h3>Define</h3>
-        <p>Prioritise and plan solutions.</p>
-      </div>
+      <input id="email" type="email" placeholder="Email">
+      <input id="password" type="password" placeholder="Password">
 
-      <div class="card">
-        <h3>Deliver</h3>
-        <p>Build, launch, and iterate quickly.</p>
-      </div>
+      <button class="btn" onclick="signUp()">Sign Up</button>
+      <button class="btn" onclick="login()">Login</button>
+      <button class="btn secondary" onclick="logout()">Logout</button>
+
+      <p id="authStatus">Checking login...</p>
 
     </div>
 
-  </section>
+    <div id="featureFormArea" class="form-box" style="display:none;">
 
-  <section class="database-section">
+      <h3>Submit a Feature Idea</h3>
 
-    <h1>Login / Sign Up</h1>
+      <input id="featureTitle" placeholder="Feature title">
 
-    <input id="email" type="email" placeholder="Email">
-    <input id="password" type="password" placeholder="Password">
+      <textarea id="featureDescription" placeholder="Describe the feature idea"></textarea>
 
-    <br>
+      <select id="featureCategory">
+        <option value="User Experience">User Experience</option>
+        <option value="Performance">Performance</option>
+        <option value="New Feature">New Feature</option>
+        <option value="Bug Fix">Bug Fix</option>
+        <option value="Other">Other</option>
+      </select>
 
-    <button class="btn" onclick="signUp()">Sign Up</button>
-    <button class="btn" onclick="login()">Login</button>
-    <button class="btn" onclick="logout()">Logout</button>
-
-    <p id="authStatus" style="margin-top:20px;"></p>
-
-    <div id="userArea" style="display:none; margin-top:40px;">
-
-      <h1>Add User</h1>
-
-      <input id="name" placeholder="Enter name">
-
-      <button class="btn" onclick="addUser()">
-        Save
-      </button>
-
-      <h2 style="margin-top:30px;">
-        Users:
-      </h2>
-
-      <ul id="userList"></ul>
+      <button class="btn" onclick="addFeature()">Submit Feature</button>
 
     </div>
+
+    <h3 style="margin-top:50px;">Requested Features</h3>
+
+    <div id="featureList" class="feature-list"></div>
 
   </section>
 
   <footer>
-    Built with 💻 + curiosity
+    Built with 💻 + product thinking
   </footer>
 
   <script>
@@ -289,12 +351,12 @@ nav a {
       "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indna3luYXJpaHdnbnRiYXp6emRhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgwOTM0NzQsImV4cCI6MjA5MzY2OTQ3NH0.Hwu98IrRMvE_qAXysCYF4X2qWdE91WqKVOwsxpdmOc8"
     );
 
-    function scrollToSection() {
+    let currentUser = null;
 
-      document.getElementById("about").scrollIntoView({
+    function scrollToSection(sectionId) {
+      document.getElementById(sectionId).scrollIntoView({
         behavior: "smooth"
       });
-
     }
 
     async function signUp() {
@@ -308,13 +370,9 @@ nav a {
       });
 
       if (error) {
-
         alert(error.message);
-
       } else {
-
-        alert("Signup successful");
-
+        alert("Signup successful. You can now log in. If email confirmation is enabled, check your inbox first.");
       }
     }
 
@@ -329,13 +387,9 @@ nav a {
       });
 
       if (error) {
-
         alert(error.message);
-
       } else {
-
-        checkUser();
-
+        await checkUser();
       }
     }
 
@@ -343,87 +397,183 @@ nav a {
 
       await supabaseClient.auth.signOut();
 
-      checkUser();
+      currentUser = null;
 
+      await checkUser();
     }
 
     async function checkUser() {
 
       const { data } = await supabaseClient.auth.getSession();
 
-      const userArea = document.getElementById("userArea");
       const authStatus = document.getElementById("authStatus");
+      const featureFormArea = document.getElementById("featureFormArea");
 
       if (data.session) {
 
-        authStatus.textContent = "Logged in";
+        currentUser = data.session.user;
 
-        userArea.style.display = "block";
+        authStatus.textContent = "Logged in as " + currentUser.email;
 
-        loadUsers();
+        featureFormArea.style.display = "block";
 
       } else {
+
+        currentUser = null;
 
         authStatus.textContent = "Not logged in";
 
-        userArea.style.display = "none";
-
+        featureFormArea.style.display = "none";
       }
+
+      await loadFeatures();
     }
 
-    async function addUser() {
+    async function addFeature() {
 
-      const name = document.getElementById("name").value;
+      if (!currentUser) {
+        alert("Please log in first.");
+        return;
+      }
+
+      const title = document.getElementById("featureTitle").value;
+      const description = document.getElementById("featureDescription").value;
+      const category = document.getElementById("featureCategory").value;
+
+      if (!title || !description) {
+        alert("Please add a title and description.");
+        return;
+      }
 
       const { error } = await supabaseClient
-        .from("users")
-        .insert([{ name: name }]);
+        .from("feature_requests")
+        .insert([
+          {
+            title: title,
+            description: description,
+            category: category,
+            votes: 0,
+            user_id: currentUser.id
+          }
+        ]);
 
       if (error) {
-
         console.log(error);
-
-        alert("Error saving user");
-
+        alert("Error saving feature: " + error.message);
       } else {
-
-        alert("User saved!");
-
-        document.getElementById("name").value = "";
-
-        loadUsers();
-
+        document.getElementById("featureTitle").value = "";
+        document.getElementById("featureDescription").value = "";
+        await loadFeatures();
       }
     }
 
-    async function loadUsers() {
+    async function loadFeatures() {
 
       const { data, error } = await supabaseClient
-        .from("users")
-        .select("*");
+        .from("feature_requests")
+        .select("*")
+        .order("votes", { ascending: false });
 
       if (error) {
-
         console.log(error);
-
+        document.getElementById("featureList").innerHTML =
+          "<p>Could not load features. Check your Supabase table and policies.</p>";
         return;
-
       }
 
-      const list = document.getElementById("userList");
+      const featureList = document.getElementById("featureList");
 
-      list.innerHTML = "";
+      featureList.innerHTML = "";
 
-      data.forEach(user => {
+      if (!data || data.length === 0) {
+        featureList.innerHTML = "<p>No feature requests yet. Add the first one!</p>";
+        return;
+      }
 
-        const li = document.createElement("li");
+      data.forEach(feature => {
 
-        li.textContent = user.name;
+        const card = document.createElement("div");
+        card.className = "feature-card";
 
-        list.appendChild(li);
+        const canDelete = currentUser && feature.user_id === currentUser.id;
+
+        card.innerHTML = `
+          <span class="tag">${feature.category || "Other"}</span>
+
+          <h3 style="margin-top:14px;">${escapeHTML(feature.title)}</h3>
+
+          <p>${escapeHTML(feature.description)}</p>
+
+          <div class="feature-meta">
+            <span class="votes">▲ ${feature.votes || 0} votes</span>
+
+            <div>
+              <button class="btn" onclick="voteFeature(${feature.id}, ${feature.votes || 0})">
+                Vote
+              </button>
+
+              ${canDelete ? `
+                <button class="btn secondary" onclick="deleteFeature(${feature.id})">
+                  Delete
+                </button>
+              ` : ""}
+            </div>
+          </div>
+        `;
+
+        featureList.appendChild(card);
 
       });
+    }
 
+    async function voteFeature(id, currentVotes) {
+
+      if (!currentUser) {
+        alert("Please log in to vote.");
+        return;
+      }
+
+      const { error } = await supabaseClient
+        .from("feature_requests")
+        .update({ votes: currentVotes + 1 })
+        .eq("id", id);
+
+      if (error) {
+        console.log(error);
+        alert("Error voting: " + error.message);
+      } else {
+        await loadFeatures();
+      }
+    }
+
+    async function deleteFeature(id) {
+
+      const confirmDelete = confirm("Delete this feature request?");
+
+      if (!confirmDelete) {
+        return;
+      }
+
+      const { error } = await supabaseClient
+        .from("feature_requests")
+        .delete()
+        .eq("id", id);
+
+      if (error) {
+        console.log(error);
+        alert("Error deleting: " + error.message);
+      } else {
+        await loadFeatures();
+      }
+    }
+
+    function escapeHTML(text) {
+
+      const div = document.createElement("div");
+
+      div.textContent = text;
+
+      return div.innerHTML;
     }
 
     checkUser();
