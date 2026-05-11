@@ -543,14 +543,46 @@
         return;
       }
 
-      const { error } = await supabaseClient
+      const { data: existingVote, error: checkError } = await supabaseClient
+        .from("feature_votes")
+        .select("*")
+        .eq("feature_id", id)
+        .eq("user_id", currentUser.id);
+
+      if (checkError) {
+        console.log(checkError);
+        alert("Error checking vote");
+        return;
+      }
+
+      if (existingVote.length > 0) {
+        alert("You already voted");
+        return;
+      }
+
+      const { error: voteError } = await supabaseClient
+        .from("feature_votes")
+        .insert([
+          {
+            feature_id: id,
+            user_id: currentUser.id
+          }
+        ]);
+
+      if (voteError) {
+        console.log(voteError);
+        alert("Error saving vote");
+        return;
+      }
+
+      const { error: updateError } = await supabaseClient
         .from("feature_requests")
         .update({ votes: currentVotes + 1 })
         .eq("id", id);
 
-      if (error) {
-        console.log(error);
-        alert("Error voting: " + error.message);
+      if (updateError) {
+        console.log(updateError);
+        alert("Error updating votes");
       } else {
         await loadFeatures();
       }
